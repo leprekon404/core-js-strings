@@ -19,8 +19,14 @@
  *   getStringLength(null) => 0
  *   getStringLength(undefined) => 0
  */
-function getStringLength(/* value */) {
-  throw new Error('Not implemented');
+function getStringLength(value) {
+  let answ;
+  if (value === null || value === undefined) {
+    answ = 0;
+  } else {
+    answ = value.length;
+  }
+  return answ;
 }
 
 /**
@@ -158,10 +164,19 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  let answ;
+  if (str.includes(value) === true) {
+    const oneS = str.indexOf(value);
+    const twoS = value.length + oneS;
+    const answ1 = str.slice(0, oneS);
+    const answ2 = str.slice(twoS, str.length);
+    answ = `${answ1}${answ2}`;
+  } else {
+    answ = str;
+  }
+  return answ;
 }
-
 /**
  * Remove the last occurrence of a substring from a string.
  *
@@ -174,8 +189,18 @@ function removeFirstOccurrences(/* str, value */) {
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeLastOccurrences(str, value) {
+  let answ;
+  if (str.includes(value) === true) {
+    const oneS = str.lastIndexOf(value);
+    const twoS = value.length + oneS;
+    const answ1 = str.slice(0, oneS);
+    const answ2 = str.slice(twoS, str.length);
+    answ = `${answ1}${answ2}`;
+  } else {
+    answ = str;
+  }
+  return answ;
 }
 
 /**
@@ -245,8 +270,23 @@ function endsWith(str, substr) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  let min;
+  let sec;
+  if (minutes < 10) {
+    min = `0${minutes}`;
+  } else {
+    min = minutes;
+  }
+  if (seconds < 10) {
+    sec = `0${seconds}`;
+  } else {
+    sec = seconds;
+  }
+  sec = String(sec);
+  const sec1 = sec.padStart(2, ':');
+  const answ = `${min}:${sec1}`;
+  return answ;
 }
 
 /**
@@ -276,8 +316,8 @@ function reverseString(str) {
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  throw new Error('Not implemented');
+function orderAlphabetically(str) {
+  return [...str].sort().join('');
 }
 
 /**
@@ -310,8 +350,11 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const array = ['a', 'e', 'i', 'o', 'u', 'y'];
+  return [...str.toLowerCase()]
+    .map((y) => (array.includes(y) ? 1 : 0))
+    .reduce((x1, x2) => x1 + x2, 0);
 }
 
 /**
